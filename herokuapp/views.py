@@ -49,47 +49,47 @@ def executeQuery(sql):
 # *********************************************
 
 # *********************************************	
-# begin customer	
+# begin Customer	
 @api_view(['POST'])	
 @parser_classes((JSONParser,))	
-# get all data from customer	
-def createDatacustomer(request, format=None):	
+# get all data from Customer	
+def createDataCustomer(request, format=None):	
     data = json.loads(json.dumps(request.data))	
-    obj = models.customer(**data)	
+    obj = models.Customer(**data)	
     obj.save()	
     return Response({"id": obj.id, "result": "ok"})
 	
 	
 @api_view(['POST'])	
 @parser_classes((JSONParser,))	
-# get all data from customer	
-def readDatacustomer(request, format=None):	
-    return Response(serializers.serialize("json", models.customer.objects.all()))	
+# get all data from Customer	
+def readDataCustomer(request, format=None):	
+    return Response(serializers.serialize("json", models.Customer.objects.all()))	
 	
 	
 @api_view(['POST'])	
 @parser_classes((JSONParser,))	
-# get update data from customer	
-def updateDatacustomer(request, format=None):	
+# get update data from Customer	
+def updateDataCustomer(request, format=None):	
     data = json.loads(json.dumps(request.data))	
-    models.customer(**data).save()	
+    models.Customer(**data).save()	
     return Response({"result": "ok"})	
 	
 	
 @api_view(['POST'])	
 @parser_classes((JSONParser,))	
-# get delete data from customer	
-def deleteDatacustomer(request, format=None):	
+# get delete data from Customer	
+def deleteDataCustomer(request, format=None):	
     data = json.loads(json.dumps(request.data))	
-    models.customer(**data).delete()	
+    models.Customer(**data).delete()	
     return Response({"result": "ok"})	
 	
 	
 @api_view(['POST'])	
 @parser_classes((JSONParser,))	
-# get delete data from customer	
-def findDatacustomer(request, format=None):	
-    return Response(serializers.serialize("json", models.customer.objects.filter(pk=request.data['pk'])))	
+# get delete data from Customer	
+def findDataCustomer(request, format=None):	
+    return Response(serializers.serialize("json", models.Customer.objects.filter(pk=request.data['pk'])))	
 	
-# end customer	
+# end Customer	
 # *********************************************
