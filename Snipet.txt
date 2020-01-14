@@ -210,6 +210,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 heroku run bash --app chatbot-ai-grand
 heroku run bash --app manage-train
 heroku run bash --app manage-train-be
+heroku run bash --app book-ticket-be
 python manage.py makemigrations
 python manage.py migrate 
 python manage.py createsuperuser
