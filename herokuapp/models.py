@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 # Create your models here.
 # https://docs.djangoproject.com/en/2.2/ref/models/fields/
@@ -13,6 +14,7 @@ class Customer(models.Model):
     number_ticket = models.CharField(max_length=50)
     deposit = models.CharField(max_length=50)
     money = models.CharField(max_length=50)
+    create_date = models.DateField(default=datetime.date.today)
     start_date = models.DateField()
     start_time_train = models.CharField(max_length=50)
     note = models.CharField(max_length=50)
