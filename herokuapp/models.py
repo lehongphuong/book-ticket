@@ -16,4 +16,4 @@ class Customer(models.Model):
     start_date = models.DateField()
     start_time_train = models.CharField(max_length=50)
     note = models.CharField(max_length=50)
-    status = models.BooleanField(default=False)
+    status = models.IntegerField(max_length=2,default=0)
