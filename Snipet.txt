@@ -130,6 +130,7 @@ heroku config:set DISABLE_COLLECTSTATIC=1 --app hello-it-pdu
 heroku config:set DISABLE_COLLECTSTATIC=1 --app manage-train
 heroku config:set DISABLE_COLLECTSTATIC=1 --app chatbot-ai-grand
 heroku config:set DISABLE_COLLECTSTATIC=1 --app manage-train-be
+heroku config:set DISABLE_COLLECTSTATIC=1 --app book-ticket-be
 
 - cài tensorflow
 	nó chỉ hợp với python 3.5.2
