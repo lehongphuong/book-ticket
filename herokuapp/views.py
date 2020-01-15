@@ -90,6 +90,16 @@ def deleteDataCustomer(request, format=None):
 # get delete data from Customer	
 def findDataCustomer(request, format=None):	
     return Response(serializers.serialize("json", models.Customer.objects.filter(pk=request.data['pk'])))	
+
+
+@api_view(['POST'])	
+@parser_classes((JSONParser,))	
+# find data by status
+def find_custommer_by_status(request, format=None):	
+    if(request.data['status'] < 3):
+        return Response(serializers.serialize("json", models.Customer.objects.filter(status=request.data['status'])))	
+    else:
+        return Response(serializers.serialize("json", models.Customer.objects.all()))	
 	
 # end Customer	
 # *********************************************

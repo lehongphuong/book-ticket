@@ -8,7 +8,7 @@ import datetime
 
 class Customer(models.Model):
     id = models.AutoField
-    cmnd = models.IntegerField(max_length=9,default=0)
+    cmnd = models.IntegerField(default=0)
     username = models.CharField(max_length=50)
     phone = models.CharField(max_length=30)
     number_ticket = models.CharField(max_length=50)
@@ -18,4 +18,4 @@ class Customer(models.Model):
     start_date = models.DateField()
     start_time_train = models.CharField(max_length=50)
     note = models.CharField(max_length=50)
-    status = models.IntegerField(max_length=2,default=0)
+    status = models.IntegerField(default=0)

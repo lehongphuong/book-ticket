@@ -11,6 +11,7 @@ urlpatterns = [
     path('updateDataCustomer', views.updateDataCustomer, name='updateDataCustomer'), 	
     path('deleteDataCustomer', views.deleteDataCustomer, name='deleteDataCustomer'),  	
     path('findDataCustomer', views.findDataCustomer, name='findDataCustomer'),  	
+    path('find_custommer_by_status', views.find_custommer_by_status, name='find_custommer_by_status'),  	
     # end Customer	
     # *******************************************************	 
 ]
