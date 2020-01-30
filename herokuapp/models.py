@@ -29,4 +29,6 @@ class Customer(models.Model):
     end_time_train = models.TimeField('Giờ Về', max_length=50)
     note = models.TextField('Ghi Chú', max_length=2000)
     status = models.IntegerField(
-        'Trạng Thái', default=0, choices=STATUS_BOOK_TICKET)
+        'Trạng Thái', default=0)
+    # status = models.IntegerField(
+    #     'Trạng Thái', default=0, choices=STATUS_BOOK_TICKET)
