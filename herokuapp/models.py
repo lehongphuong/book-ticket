@@ -7,8 +7,8 @@ import datetime
 
 STATUS_BOOK_TICKET = [
     (0, 'Vé Mới Đặt'),
-    (1, 'Vé Đã Thanh Toán'),
-    (2, 'Vé Hủy'),
+    (1, 'Vé Đã Nhận'),
+    (2, 'Vé Đã Đi'),
     (3, 'Vé Không Đi')
 ]
 
