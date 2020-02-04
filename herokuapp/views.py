@@ -96,7 +96,7 @@ def findDataCustomer(request, format=None):
 @parser_classes((JSONParser,))	
 # find data by status
 def find_custommer_by_status(request, format=None):	
-    if(request.data['status'] < 3):
+    if(request.data['status'] < 4):
         return Response(serializers.serialize("json", models.Customer.objects.filter(status=request.data['status'])))	
     else:
         return Response(serializers.serialize("json", models.Customer.objects.all()))	
