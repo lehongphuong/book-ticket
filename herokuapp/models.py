@@ -12,7 +12,6 @@ STATUS_BOOK_TICKET = [
     (3, 'Vé Không Đi')
 ]
 
-
 class Customer(models.Model):
     id = models.AutoField
     cmnd = models.IntegerField('CMND', default=0)
