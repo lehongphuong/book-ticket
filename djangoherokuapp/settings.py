@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'herokuapp',
     'rest_framework',
     'corsheaders',
+    'import_export',
     
 ]
 

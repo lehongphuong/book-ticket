@@ -10,7 +10,7 @@ STATUS_BOOK_TICKET = [
     (1, 'Vé Đã Nhận'),
     (2, 'Vé Đã Đi'),
     (3, 'Vé Không Đi')
-]
+] 
 
 class Customer(models.Model):
     id = models.AutoField

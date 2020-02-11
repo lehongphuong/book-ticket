@@ -11,3 +11,4 @@ djangorestframework==3.9.4
 django-cors-headers==3.0.2
 django-jet==1.0.8
 postgres==2.2.2
+django-import-export
