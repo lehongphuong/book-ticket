@@ -1,36 +1,184 @@
-        //******************user************************
-        // user(id,idCompany,isCall,username,password,email,address,phone,pointAll,pointCurrent)
-        // Get all data from user
+        //******************tf_staff************************
+        // tf_staff(id,name,name_id,branch_id,phone,email,address,hair_samples,image_url,level_id,cat_toc,goi_dau,user_id,time,last_time_update,password)
+        // Get all data from tf_staff
         case 10: {
-            $sql = |SELECT * FROM user|;
+            $sql = "SELECT * FROM tf_staff";
             break;
         }
 
-        // Insert data to user
+        // Insert data to tf_staff
         case 11: {
-            $sql = |INSERT INTO user(idCompany,isCall,username,password,email,address,phone,pointAll,pointCurrent)
-            		VALUES('$data->idCompany','$data->isCall','$data->username','$data->password','$data->email','$data->address','$data->phone','$data->pointAll','$data->pointCurrent')|;
+            $sql = "INSERT INTO tf_staff(name,name_id,branch_id,phone,email,address,hair_samples,image_url,level_id,cat_toc,goi_dau,user_id,time,last_time_update,password)
+            		VALUES('$data->name','$data->name_id','$data->branch_id','$data->phone','$data->email','$data->address','$data->hair_samples','$data->image_url','$data->level_id','$data->cat_toc','$data->goi_dau','$data->user_id','$data->time','$data->last_time_update','$data->password')";
             break;
         }
 
-        // Update data user
+        // Update data tf_staff
         case 12: {
-            $sql = |UPDATE user SET idCompany='$data->idCompany', isCall='$data->isCall', username='$data->username', password='$data->password', email='$data->email', address='$data->address', phone='$data->phone', pointAll='$data->pointAll', pointCurrent = '$data->pointCurrent'
-            		WHERE id='$data->id'|;
+            $sql = "UPDATE tf_staff SET name='$data->name', name_id='$data->name_id', branch_id='$data->branch_id', phone='$data->phone', email='$data->email', address='$data->address', hair_samples='$data->hair_samples', image_url='$data->image_url', level_id='$data->level_id', cat_toc='$data->cat_toc', goi_dau='$data->goi_dau', user_id='$data->user_id', time='$data->time', last_time_update='$data->last_time_update', password = '$data->password'
+            		WHERE id='$data->id'";
             break;
         }
 
-        // Delete data of user
+        // Delete data of tf_staff
         case 13: {
-            $sql = |DELETE FROM user
-            		WHERE id='$data->id'|;
+            $sql = "DELETE FROM tf_staff
+            		WHERE id='$data->id'";
             break;
         }
 
-        // Find data with id user
+        // Find data with id tf_staff
         case 14: {
-            $sql = |SELECT * FROM user
-            		WHERE id='$data->id'|;
+            $sql = "SELECT * FROM tf_staff
+            		WHERE id='$data->id'";
+            break;
+        }
+
+
+        //******************tf_booking************************
+        // tf_booking(id,branch_id,phone,name,appointment_time,appointment_timestamp,time_slot,staff_id,staff_id_goi_dau,services,service_ids,price,price_discount,discount,is_other,price_other,note,status,user_change,time,time_change)
+        // Get all data from tf_booking
+        case 20: {
+            $sql = "SELECT * FROM tf_booking";
+            break;
+        }
+
+        // Insert data to tf_booking
+        case 21: {
+            $sql = "INSERT INTO tf_booking(branch_id,phone,name,appointment_time,appointment_timestamp,time_slot,staff_id,staff_id_goi_dau,services,service_ids,price,price_discount,discount,is_other,price_other,note,status,user_change,time,time_change)
+            		VALUES('$data->branch_id','$data->phone','$data->name','$data->appointment_time','$data->appointment_timestamp','$data->time_slot','$data->staff_id','$data->staff_id_goi_dau','$data->services','$data->service_ids','$data->price','$data->price_discount','$data->discount','$data->is_other','$data->price_other','$data->note','$data->status','$data->user_change','$data->time','$data->time_change')";
+            break;
+        }
+
+        // Update data tf_booking
+        case 22: {
+            $sql = "UPDATE tf_booking SET branch_id='$data->branch_id', phone='$data->phone', name='$data->name', appointment_time='$data->appointment_time', appointment_timestamp='$data->appointment_timestamp', time_slot='$data->time_slot', staff_id='$data->staff_id', staff_id_goi_dau='$data->staff_id_goi_dau', services='$data->services', service_ids='$data->service_ids', price='$data->price', price_discount='$data->price_discount', discount='$data->discount', is_other='$data->is_other', price_other='$data->price_other', note='$data->note', status='$data->status', user_change='$data->user_change', time='$data->time', time_change = '$data->time_change'
+            		WHERE id='$data->id'";
+            break;
+        }
+
+        // Delete data of tf_booking
+        case 23: {
+            $sql = "DELETE FROM tf_booking
+            		WHERE id='$data->id'";
+            break;
+        }
+
+        // Find data with id tf_booking
+        case 24: {
+            $sql = "SELECT * FROM tf_booking
+            		WHERE id='$data->id'";
+            break;
+        }
+
+
+        //******************tf_branch************************
+        // tf_branch(id,name,user_id,time,last_time_update)
+        // Get all data from tf_branch
+        case 30: {
+            $sql = "SELECT * FROM tf_branch";
+            break;
+        }
+
+        // Insert data to tf_branch
+        case 31: {
+            $sql = "INSERT INTO tf_branch(name,user_id,time,last_time_update)
+            		VALUES('$data->name','$data->user_id','$data->time','$data->last_time_update')";
+            break;
+        }
+
+        // Update data tf_branch
+        case 32: {
+            $sql = "UPDATE tf_branch SET name='$data->name', user_id='$data->user_id', time='$data->time', last_time_update = '$data->last_time_update'
+            		WHERE id='$data->id'";
+            break;
+        }
+
+        // Delete data of tf_branch
+        case 33: {
+            $sql = "DELETE FROM tf_branch
+            		WHERE id='$data->id'";
+            break;
+        }
+
+        // Find data with id tf_branch
+        case 34: {
+            $sql = "SELECT * FROM tf_branch
+            		WHERE id='$data->id'";
+            break;
+        }
+
+
+        //******************tf_product************************
+        // tf_product(id,name,price,discount,user_id,time,last_time_update)
+        // Get all data from tf_product
+        case 40: {
+            $sql = "SELECT * FROM tf_product";
+            break;
+        }
+
+        // Insert data to tf_product
+        case 41: {
+            $sql = "INSERT INTO tf_product(name,price,discount,user_id,time,last_time_update)
+            		VALUES('$data->name','$data->price','$data->discount','$data->user_id','$data->time','$data->last_time_update')";
+            break;
+        }
+
+        // Update data tf_product
+        case 42: {
+            $sql = "UPDATE tf_product SET name='$data->name', price='$data->price', discount='$data->discount', user_id='$data->user_id', time='$data->time', last_time_update = '$data->last_time_update'
+            		WHERE id='$data->id'";
+            break;
+        }
+
+        // Delete data of tf_product
+        case 43: {
+            $sql = "DELETE FROM tf_product
+            		WHERE id='$data->id'";
+            break;
+        }
+
+        // Find data with id tf_product
+        case 44: {
+            $sql = "SELECT * FROM tf_product
+            		WHERE id='$data->id'";
+            break;
+        }
+
+
+        //******************tf_service************************
+        // tf_service(id,name,name_id,description,position,publish,price,price_discount,start_time,end_time,user_id,time,last_time_update)
+        // Get all data from tf_service
+        case 50: {
+            $sql = "SELECT * FROM tf_service";
+            break;
+        }
+
+        // Insert data to tf_service
+        case 51: {
+            $sql = "INSERT INTO tf_service(name,name_id,description,position,publish,price,price_discount,start_time,end_time,user_id,time,last_time_update)
+            		VALUES('$data->name','$data->name_id','$data->description','$data->position','$data->publish','$data->price','$data->price_discount','$data->start_time','$data->end_time','$data->user_id','$data->time','$data->last_time_update')";
+            break;
+        }
+
+        // Update data tf_service
+        case 52: {
+            $sql = "UPDATE tf_service SET name='$data->name', name_id='$data->name_id', description='$data->description', position='$data->position', publish='$data->publish', price='$data->price', price_discount='$data->price_discount', start_time='$data->start_time', end_time='$data->end_time', user_id='$data->user_id', time='$data->time', last_time_update = '$data->last_time_update'
+            		WHERE id='$data->id'";
+            break;
+        }
+
+        // Delete data of tf_service
+        case 53: {
+            $sql = "DELETE FROM tf_service
+            		WHERE id='$data->id'";
+            break;
+        }
+
+        // Find data with id tf_service
+        case 54: {
+            $sql = "SELECT * FROM tf_service
+            		WHERE id='$data->id'";
             break;
         }
 

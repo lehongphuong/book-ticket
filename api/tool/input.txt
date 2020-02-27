@@ -1,11 +1,6 @@
-10
-user(id,username,fullname,born,sex,email,phone,address,level)
-car(id,name,image)
-driver(id,idCompany,username,fullname,password,cmnd,phone,address,experience,image)
-trip(id,idDriver,type,fromLocation,destLocation,fromCenter,destCenter,startDate,endDate,startTime,endTime,price,numberSeat)
-regulation(id,idTrip,name)
-ticket(id,idUser,idTrip,startDate,endDate,status,type,price)
-comment(id,idTrip,idDriver,star,message,feedback)
-reward(id,percent,maxPrice,startDate,endDate,status)
-company(id,name,phone,address,startDate,endDate,status)
-history(id,idCompany,modDate,userId,sqlQuery,action)
+5
+tf_staff(id,name,name_id,branch_id,phone,email,address,hair_samples,image_url,level_id,cat_toc,goi_dau,user_id,time,last_time_update,password)
+tf_booking(id,branch_id,phone,name,appointment_time,appointment_timestamp,time_slot,staff_id,staff_id_goi_dau,services,service_ids,price,price_discount,discount,is_other,price_other,note,status,user_change,time,time_change)
+tf_branch(id,name,user_id,time,last_time_update)
+tf_product(id,name,price,discount,user_id,time,last_time_update)
+tf_service(id,name,name_id,description,position,publish,price,price_discount,start_time,end_time,user_id,time,last_time_update)

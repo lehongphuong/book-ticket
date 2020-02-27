@@ -5,19 +5,7 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, Authorization, X-Aut
 header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
 header('Content-Type: text/html; charset=utf-8');
 include "db.php";
-// $data = json_decode(file_get_contents("php://input"));
-// include "db.php";
-// $sql = "";
-// $data = json_decode(base64_decode($data->ashdfkjashdfkjashdfkjashdfkjashdfkjashdf));  
-$param = file_get_contents("php://input");
-
-// decode param data
-for($i = 0; $i < 3; $i++){
-    // $param = base64_decode($param); 
-} 
-
-// decode param data 
-
+$param = file_get_contents("php://input"); 
 $data = json_decode($param);
 $sql = "";
 
@@ -31,416 +19,204 @@ if (isset($data->what)) {
             break;
         }
 
-        // -10 thông tin của khách hàng đi xe
-        // user(id, username, email, phone, address, level) 
-
-        // -20 loại xe
-        // car(id, name, image) 
-
-        // -30 thông tin của tài xế đi xe
-        // driver(id, idCompany, username, fullname, password, cmnd, phone, address, experience, image)
-
-        // -40 thông tin chuyến đi của tài xế
-        // trip(id, idDriver, type[xe đi ké hay xe quay đầu],fromLocation, destLocation,fromCenter,destCenter, startDate, endDate, startTime, endTime, price, numberSeat)
-
-        // -50 các quy định đi xe như có nhạc, có hút thuốc hay không, có điều hòa hay không
-        // regulation(id, idTrip, name)
-
-        // -60 thông tin vé xe
-        // ticket(id, idUser, idTrip, startDate, endDate, status[đã dùng hay chưa, hoăc hủy], type[vé thanh toán rồi, vé online thanh toán sau], price,) 
-
-        // -70 đánh giá của khách hàng với tài xế trong chuyến đi nào đó
-        // comment(id, idTrip, idDriver, idUser, star(1->5), message, feedback)
-
-        // -80 Khuyến mãi với các chuyến đi khi thanh toán thì sẽ giảm giá
-        // reward(id, percent, maxPrice(áp dụng với chuyến đi tối đa bao nhiêu tiền), startDate, endDate, status(đã dùng hay chưa))
-
-        // -90 Thông tin công ty vận tải muốn tham gia
-        // company(id, name, phone, address, startDate, endDate, status(còn hoạt động hay không))     
-
-        // 100 - common 
-        // history(id, idCompany, modDate, userId, sqlQuery, action) => sẻ được implement trong lúc call api   
-
-        //******************user************************
-        // user(id,username,email,phone,address,level)
-        // Get all data from user
+        //******************tf_staff************************
+        // tf_staff(id,name,name_id,branch_id,phone,email,address,hair_samples,image_url,level_id,cat_toc,goi_dau,user_id,time,last_time_update,password)
+        // Get all data from tf_staff
         case 10: {
-            $sql = "SELECT * FROM user";
+            $sql = "SELECT * FROM tf_staff";
             break;
         }
 
-        // Insert data to user
+        // Insert data to tf_staff
         case 11: {
-            $sql = "INSERT INTO user(username,email,phone,address,level)
-            		VALUES('$data->username','$data->email','$data->phone','$data->address','$data->level')";
+            $sql = "INSERT INTO tf_staff(name,name_id,branch_id,phone,email,address,hair_samples,image_url,level_id,cat_toc,goi_dau,user_id,time,last_time_update,password)
+            		VALUES('$data->name','$data->name_id','$data->branch_id','$data->phone','$data->email','$data->address','$data->hair_samples','$data->image_url','$data->level_id','$data->cat_toc','$data->goi_dau','$data->user_id','$data->time','$data->last_time_update','$data->password')";
             break;
         }
 
-        // Update data user
+        // Update data tf_staff
         case 12: {
-            $sql = "UPDATE user SET username='$data->username', email='$data->email', phone='$data->phone', address='$data->address', level = '$data->level'
+            $sql = "UPDATE tf_staff SET name='$data->name', name_id='$data->name_id', branch_id='$data->branch_id', phone='$data->phone', email='$data->email', address='$data->address', hair_samples='$data->hair_samples', image_url='$data->image_url', level_id='$data->level_id', cat_toc='$data->cat_toc', goi_dau='$data->goi_dau', user_id='$data->user_id', time='$data->time', last_time_update='$data->last_time_update', password = '$data->password'
             		WHERE id='$data->id'";
             break;
         }
 
-        // Delete data of user
+        // Delete data of tf_staff
         case 13: {
-            $sql = "DELETE FROM user
+            $sql = "DELETE FROM tf_staff
             		WHERE id='$data->id'";
             break;
         }
 
-        // Find data with id user
+        // Find data with id tf_staff
         case 14: {
-            $sql = "SELECT * FROM user
+            $sql = "SELECT * FROM tf_staff
             		WHERE id='$data->id'";
             break;
         }
 
+        // Find data with id tf_staff cắt tóc
+        case 15: {
+            $sql = "SELECT * FROM tf_staff
+            		WHERE cat_toc='1' AND branch_id = '2' ";
+            break;
+        } 
 
-        //******************car************************
-        // car(id,name,image)
-        // Get all data from car
+        // Find data with id tf_staff gội đầu
+        case 16: {
+            $sql = "SELECT * FROM tf_staff
+            		WHERE cat_toc='0' AND branch_id = '2' ";
+            break;
+        } 
+
+
+        //******************tf_booking************************
+        // tf_booking(id,branch_id,phone,name,appointment_time,appointment_timestamp,time_slot,staff_id,staff_id_goi_dau,services,service_ids,price,price_discount,discount,is_other,price_other,note,status,user_change,time,time_change)
+        // Get all data from tf_booking
         case 20: {
-            $sql = "SELECT * FROM car";
+            $sql = "SELECT * FROM tf_booking";
             break;
         }
 
-        // Insert data to car
+        // Insert data to tf_booking
         case 21: {
-            $sql = "INSERT INTO car(name,image)
-            		VALUES('$data->name','$data->image')";
+            $sql = "INSERT INTO tf_booking(branch_id,phone,name,appointment_time,appointment_timestamp,time_slot,staff_id,staff_id_goi_dau,services,service_ids,price,price_discount,discount,is_other,price_other,note,status,user_change,time,time_change)
+            		VALUES('$data->branch_id','$data->phone','$data->name','$data->appointment_time','$data->appointment_timestamp','$data->time_slot','$data->staff_id','$data->staff_id_goi_dau','$data->services','$data->service_ids','$data->price','$data->price_discount','$data->discount','$data->is_other','$data->price_other','$data->note','$data->status','$data->user_change','$data->time','$data->time_change')";
             break;
         }
 
-        // Update data car
+        // Update data tf_booking
         case 22: {
-            $sql = "UPDATE car SET name='$data->name', image = '$data->image'
+            $sql = "UPDATE tf_booking SET branch_id='$data->branch_id', phone='$data->phone', name='$data->name', appointment_time='$data->appointment_time', appointment_timestamp='$data->appointment_timestamp', time_slot='$data->time_slot', staff_id='$data->staff_id', staff_id_goi_dau='$data->staff_id_goi_dau', services='$data->services', service_ids='$data->service_ids', price='$data->price', price_discount='$data->price_discount', discount='$data->discount', is_other='$data->is_other', price_other='$data->price_other', note='$data->note', status='$data->status', user_change='$data->user_change', time='$data->time', time_change = '$data->time_change'
             		WHERE id='$data->id'";
             break;
         }
 
-        // Delete data of car
+        // Delete data of tf_booking
         case 23: {
-            $sql = "DELETE FROM car
+            $sql = "DELETE FROM tf_booking
             		WHERE id='$data->id'";
             break;
         }
 
-        // Find data with id car
+        // Find data with id tf_booking
         case 24: {
-            $sql = "SELECT * FROM car
+            $sql = "SELECT * FROM tf_booking
             		WHERE id='$data->id'";
             break;
-        }
+        } 
 
 
-        //******************driver************************
-        // driver(id,idCompany,username,password,cmnd,phone,address,experience,image)
-        // Get all data from driver
+        //******************tf_branch************************
+        // tf_branch(id,name,user_id,time,last_time_update)
+        // Get all data from tf_branch
         case 30: {
-            $sql = "SELECT * FROM driver";
+            $sql = "SELECT * FROM tf_branch";
             break;
         }
 
-        // Insert data to driver
+        // Insert data to tf_branch
         case 31: {
-            $sql = "INSERT INTO driver(idCompany,username,password,cmnd,phone,address,experience,image)
-            		VALUES('$data->idCompany','$data->username','$data->password','$data->cmnd','$data->phone','$data->address','$data->experience','$data->image')";
+            $sql = "INSERT INTO tf_branch(name,user_id,time,last_time_update)
+            		VALUES('$data->name','$data->user_id','$data->time','$data->last_time_update')";
             break;
         }
 
-        // Update data driver
+        // Update data tf_branch
         case 32: {
-            $sql = "UPDATE driver SET idCompany='$data->idCompany', username='$data->username', password='$data->password', cmnd='$data->cmnd', phone='$data->phone', address='$data->address', experience='$data->experience', image = '$data->image'
+            $sql = "UPDATE tf_branch SET name='$data->name', user_id='$data->user_id', time='$data->time', last_time_update = '$data->last_time_update'
             		WHERE id='$data->id'";
             break;
         }
 
-        // Delete data of driver
+        // Delete data of tf_branch
         case 33: {
-            $sql = "DELETE FROM driver
+            $sql = "DELETE FROM tf_branch
             		WHERE id='$data->id'";
             break;
         }
 
-        // Find data with id driver
+        // Find data with id tf_branch
         case 34: {
-            $sql = "SELECT * FROM driver
+            $sql = "SELECT * FROM tf_branch
             		WHERE id='$data->id'";
             break;
         }
 
 
-        //******************trip************************
-        // trip(id,idDriver,type,fromLocation,destLocation,fromCenter,destCenter,startDate,endDate,startTime,endTime,price,numberSeat)
-        // Get all data from trip
+        //******************tf_product************************
+        // tf_product(id,name,price,discount,user_id,time,last_time_update)
+        // Get all data from tf_product
         case 40: {
-            $sql = "SELECT * FROM trip";
+            $sql = "SELECT * FROM tf_product";
             break;
         }
 
-        // Insert data to trip
+        // Insert data to tf_product
         case 41: {
-            $sql = "INSERT INTO trip(idDriver,type,fromLocation,destLocation,fromCenter,destCenter,startDate,endDate,startTime,endTime,price,numberSeat)
-            		VALUES('$data->idDriver','$data->type','$data->fromLocation','$data->destLocation','$data->fromCenter','$data->destCenter','$data->startDate','$data->endDate','$data->startTime','$data->endTime','$data->price','$data->numberSeat')";
+            $sql = "INSERT INTO tf_product(name,price,discount,user_id,time,last_time_update)
+            		VALUES('$data->name','$data->price','$data->discount','$data->user_id','$data->time','$data->last_time_update')";
             break;
         }
 
-        // Update data trip
+        // Update data tf_product
         case 42: {
-            $sql = "UPDATE trip SET idDriver='$data->idDriver', type='$data->type', fromLocation='$data->fromLocation', destLocation='$data->destLocation', fromCenter='$data->fromCenter', destCenter='$data->destCenter', startDate='$data->startDate', endDate='$data->endDate', startTime='$data->startTime', endTime='$data->endTime', price='$data->price', numberSeat = '$data->numberSeat'
+            $sql = "UPDATE tf_product SET name='$data->name', price='$data->price', discount='$data->discount', user_id='$data->user_id', time='$data->time', last_time_update = '$data->last_time_update'
             		WHERE id='$data->id'";
             break;
         }
 
-        // Delete data of trip
+        // Delete data of tf_product
         case 43: {
-            $sql = "DELETE FROM trip
+            $sql = "DELETE FROM tf_product
             		WHERE id='$data->id'";
             break;
         }
 
-        // Find data with id trip
+        // Find data with id tf_product
         case 44: {
-            $sql = "SELECT * FROM trip
+            $sql = "SELECT * FROM tf_product
             		WHERE id='$data->id'";
             break;
         }
 
-        // get chuyến xe với điều kiện search
-        case 45: { 
-            $sql = "SELECT trip.*, d.username, d.fullname, d.cmnd, d.phone, d.address, d.experience, d.image FROM trip
-                    LEFT JOIN driver d on trip.idDriver = d.id
-                    WHERE DATEDIFF(endDate, '$data->startDate')>0
-                    AND fromLocation = '$data->fromLocation'
-                    AND destLocation = '$data->destLocation'";  
-            break;
-        }
 
-
-
-
-        //******************regulation************************
-        // regulation(id,idTrip,name)
-        // Get all data from regulation
+        //******************tf_service************************
+        // tf_service(id,name,name_id,description,position,publish,price,price_discount,start_time,end_time,user_id,time,last_time_update)
+        // Get all data from tf_service
         case 50: {
-            $sql = "SELECT * FROM regulation";
+            $sql = "SELECT * FROM tf_service";
             break;
         }
 
-        // Insert data to regulation
+        // Insert data to tf_service
         case 51: {
-            $sql = "INSERT INTO regulation(idTrip,name)
-            		VALUES('$data->idTrip','$data->name')";
+            $sql = "INSERT INTO tf_service(name,name_id,description,position,publish,price,price_discount,start_time,end_time,user_id,time,last_time_update)
+            		VALUES('$data->name','$data->name_id','$data->description','$data->position','$data->publish','$data->price','$data->price_discount','$data->start_time','$data->end_time','$data->user_id','$data->time','$data->last_time_update')";
             break;
         }
 
-        // Update data regulation
+        // Update data tf_service
         case 52: {
-            $sql = "UPDATE regulation SET idTrip='$data->idTrip', name = '$data->name'
+            $sql = "UPDATE tf_service SET name='$data->name', name_id='$data->name_id', description='$data->description', position='$data->position', publish='$data->publish', price='$data->price', price_discount='$data->price_discount', start_time='$data->start_time', end_time='$data->end_time', user_id='$data->user_id', time='$data->time', last_time_update = '$data->last_time_update'
             		WHERE id='$data->id'";
             break;
         }
 
-        // Delete data of regulation
+        // Delete data of tf_service
         case 53: {
-            $sql = "DELETE FROM regulation
+            $sql = "DELETE FROM tf_service
             		WHERE id='$data->id'";
             break;
         }
 
-        // Find data with id regulation
+        // Find data with id tf_service
         case 54: {
-            $sql = "SELECT * FROM regulation
+            $sql = "SELECT * FROM tf_service
             		WHERE id='$data->id'";
             break;
-        }
+        } 
 
-
-        //******************ticket************************
-        // ticket(id,idUser,idTrip,startDate,endDate,status,type,price)
-        // Get all data from ticket
-        case 60: {
-            $sql = "SELECT * FROM ticket";
-            break;
-        }
-
-        // Insert data to ticket
-        case 61: {
-            $sql = "INSERT INTO ticket(idUser,idTrip,startDate,endDate,status,type,price)
-            		VALUES('$data->idUser','$data->idTrip','$data->startDate','$data->endDate','$data->status','$data->type','$data->price')";
-            break;
-        }
-
-        // Update data ticket
-        case 62: {
-            $sql = "UPDATE ticket SET idUser='$data->idUser', idTrip='$data->idTrip', startDate='$data->startDate', endDate='$data->endDate', status='$data->status', type='$data->type', price = '$data->price'
-            		WHERE id='$data->id'";
-            break;
-        }
-
-        // Delete data of ticket
-        case 63: {
-            $sql = "DELETE FROM ticket
-            		WHERE id='$data->id'";
-            break;
-        }
-
-        // Find data with id ticket
-        case 64: {
-            $sql = "SELECT * FROM ticket
-            		WHERE id='$data->id'";
-            break;
-        }
-
-
-        //******************comment************************
-        // comment(id,idTrip,idDriver,star,message,feedback)
-        // Get all data from comment
-        case 70: {
-            $sql = "SELECT * FROM comment";
-            break;
-        }
-
-        // Insert data to comment
-        case 71: {
-            $sql = "INSERT INTO comment(idTrip,idDriver,star,message,feedback)
-            		VALUES('$data->idTrip','$data->idDriver','$data->star','$data->message','$data->feedback')";
-            break;
-        }
-
-        // Update data comment
-        case 72: {
-            $sql = "UPDATE comment SET idTrip='$data->idTrip', idDriver='$data->idDriver', star='$data->star', message='$data->message', feedback = '$data->feedback'
-            		WHERE id='$data->id'";
-            break;
-        }
-
-        // Delete data of comment
-        case 73: {
-            $sql = "DELETE FROM comment
-            		WHERE id='$data->id'";
-            break;
-        }
-
-        // Find data with id comment
-        case 74: {
-            $sql = "SELECT * FROM comment
-            		WHERE id='$data->id'";
-            break;
-        }
-
-
-        //******************reward************************
-        // reward(id,percent,maxPrice,startDate,endDate,status)
-        // Get all data from reward
-        case 80: {
-            $sql = "SELECT * FROM reward";
-            break;
-        }
-
-        // Insert data to reward
-        case 81: {
-            $sql = "INSERT INTO reward(percent,maxPrice,startDate,endDate,status)
-            		VALUES('$data->percent','$data->maxPrice','$data->startDate','$data->endDate','$data->status')";
-            break;
-        }
-
-        // Update data reward
-        case 82: {
-            $sql = "UPDATE reward SET percent='$data->percent', maxPrice='$data->maxPrice', startDate='$data->startDate', endDate='$data->endDate', status = '$data->status'
-            		WHERE id='$data->id'";
-            break;
-        }
-
-        // Delete data of reward
-        case 83: {
-            $sql = "DELETE FROM reward
-            		WHERE id='$data->id'";
-            break;
-        }
-
-        // Find data with id reward
-        case 84: {
-            $sql = "SELECT * FROM reward
-            		WHERE id='$data->id'";
-            break;
-        }
-
-
-        //******************company************************
-        // company(id,name,phone,address,startDate,endDate,status)
-        // Get all data from company
-        case 90: {
-            $sql = "SELECT * FROM company";
-            break;
-        }
-
-        // Insert data to company
-        case 91: {
-            $sql = "INSERT INTO company(name,phone,address,startDate,endDate,status)
-            		VALUES('$data->name','$data->phone','$data->address','$data->startDate','$data->endDate','$data->status')";
-            break;
-        }
-
-        // Update data company
-        case 92: {
-            $sql = "UPDATE company SET name='$data->name', phone='$data->phone', address='$data->address', startDate='$data->startDate', endDate='$data->endDate', status = '$data->status'
-            		WHERE id='$data->id'";
-            break;
-        }
-
-        // Delete data of company
-        case 93: {
-            $sql = "DELETE FROM company
-            		WHERE id='$data->id'";
-            break;
-        }
-
-        // Find data with id company
-        case 94: {
-            $sql = "SELECT * FROM company
-            		WHERE id='$data->id'";
-            break;
-        }
-
-
-        //******************history************************
-        // history(id,idCompany,modDate,userId,sqlQuery,action)
-        // Get all data from history
-        case 100: {
-            $sql = "SELECT * FROM history";
-            break;
-        }
-
-        // Insert data to history
-        case 101: {
-            $sql = "INSERT INTO history(idCompany,modDate,userId,sqlQuery,action)
-            		VALUES('$data->idCompany','$data->modDate','$data->userId','$data->sqlQuery','$data->action')";
-            break;
-        }
-
-        // Update data history
-        case 102: {
-            $sql = "UPDATE history SET idCompany='$data->idCompany', modDate='$data->modDate', userId='$data->userId', sqlQuery='$data->sqlQuery', action = '$data->action'
-            		WHERE id='$data->id'";
-            break;
-        }
-
-        // Delete data of history
-        case 103: {
-            $sql = "DELETE FROM history
-            		WHERE id='$data->id'";
-            break;
-        }
-
-        // Find data with id history
-        case 104: {
-            $sql = "SELECT * FROM history
-            		WHERE id='$data->id'";
-            break;
-        }
         
     }
     
@@ -464,5 +240,5 @@ if (isset($data->what)) {
         echo "null";
     }
 }
-// $conn->close();
+$conn->close();
 ?>
